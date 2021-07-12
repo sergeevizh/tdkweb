@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { InfoComponent } from './components/info/info.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlaysComponent } from './components/plays/plays.component';
 import { PressComponent } from './components/press/press.component';
 import { PricesComponent } from './components/prices/prices.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'info', component: InfoComponent},
   { path: 'kontakt', component: ContactComponent},
   { path: 'presse', component: PressComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'}
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

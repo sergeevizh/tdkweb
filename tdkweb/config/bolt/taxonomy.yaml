@@ -32,8 +32,7 @@ departments:
     name: Abteilung
     slug: departments
     singular_slug: department
-    behaves_like: categories
-    multiple: false
+    behaves_like: grouping
     options:
         actors: Schauspiel
         backstage: Backstage

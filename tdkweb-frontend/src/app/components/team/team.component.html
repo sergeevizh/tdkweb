@@ -1,1 +1,10 @@
-<p>team works!</p>
+<!-- <div *ngFor="let department of departments | keyvalue">
+    <h1>{{department.key}}</h1>
+    <app-person-teaser *ngFor="let person of department.value" [person]="person"></app-person-teaser>
+</div>
+ -->
+
+ <div>
+     <h1>Schauspiel</h1>
+     <app-person-teaser *ngFor="let person of actors" [person]="person"></app-person-teaser>
+ </div>

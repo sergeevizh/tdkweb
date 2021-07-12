@@ -352,6 +352,20 @@ infos:
     icon_many: fa:info-circle
     icon_one: fa:info-circle
         
+404-messages:
+    name: '404 Fehlermeldungen'
+    singular_name: '404 Fehlermeldung'
+    slug: 404-messages
+    singular_slug: 404-message
+    show_in_menu: Andere
+    fields:
+        message:
+            label: Nachricht
+            type: text
+        image:
+            label: Bild
+            type: image
+            required: false
 
 # Possible field types:
 #

@@ -1,0 +1,20 @@
+query Team{
+    contents(contentType:"people"){
+        edges{
+            node{
+                fieldValues,
+                taxonomyValues
+            }
+        }
+    }
+}
+
+query NotFoundError{
+    contents(contentType:"404-messages"){
+        edges{
+            node{
+                fieldValues
+            }
+        }
+    }
+}
