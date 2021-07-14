@@ -1,1 +1,36 @@
-<p>shows works!</p>
+      <div
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        class="cal-btn"
+      >
+        Previous
+      </div>
+      <div
+        class="cal-btn"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Today
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+      >
+        Next
+      </div>
+
+<div [ngSwitch]="view">
+    <mwl-calendar-month-view 
+        class="shows-calendar"
+        *ngSwitchCase="'month'"
+        [viewDate]="viewDate"
+        [events]="shows"
+        [locale]="locale"
+        [weekStartsOn]="weekStartsOn"
+    >
+
+    </mwl-calendar-month-view>
+</div>

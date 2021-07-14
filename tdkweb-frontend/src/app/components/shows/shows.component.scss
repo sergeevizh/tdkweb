@@ -1,0 +1,15 @@
+@import '/src/styles.scss';
+
+.shows-calendar{
+    margin: 20px;
+}
+
+.cal-btn{
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+    background-color: $accent-color;
+    color: whitesmoke;
+    border-radius: 5px;
+}
