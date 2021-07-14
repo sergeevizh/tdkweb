@@ -1,0 +1,23 @@
+<div class="tdk-footer">
+    <div class="contact-details">
+        <h3>Kontakt</h3>
+        <div class="contact-detail" *ngFor="let detail of contactDetails">
+            <span class="material-icons-outlined contact-detail-icon">{{detail.node?.fieldValues.icon}}</span>
+            <div [ngSwitch]="detail.node?.fieldValues.name">
+                <a *ngSwitchCase="'E-Mail'" href="mailto:{{detail.node?.fieldValues.content}}">{{detail.node?.fieldValues.content}}</a>
+                <a *ngSwitchCase="'Telefonnummer'" href="tel:{{detail.node?.fieldValues.content}}">{{detail.node?.fieldValues.content}}</a>
+                <a *ngSwitchCase="'Adresse'" target="_blank" href="https://www.google.com/maps/search/?api=1&query={{detail.node?.fieldValues.content}}">{{detail.node?.fieldValues.content}}</a>
+                <span *ngSwitchDefault>{{detail.node?.fieldValues.content}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="office-times">
+        <h3>Gerne für Sie erreichbar</h3>
+        <div [innerHTML]="officeTimes?.node?.fieldValues.content" class="office-time-block"></div>
+    </div>
+    <div class="copyright-notice">
+        <span>
+            {{copyrightNotice}}
+        </span>
+    </div>
+</div>

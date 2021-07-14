@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { PersonTeaserComponent } from './components/person-teaser/person-teaser.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PersonComponent } from './components/person/person.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { registerLocaleData } from '@angular/common';
+import localeDeAt from '@angular/common/locales/de-AT';
+import { FooterComponent } from './components/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+registerLocaleData(localeDeAt);
 
 @NgModule({
   declarations: [
@@ -30,13 +37,16 @@ import { PersonComponent } from './components/person/person.component';
     PlaysComponent,
     PersonTeaserComponent,
     PageNotFoundComponent,
-    PersonComponent
+    PersonComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
