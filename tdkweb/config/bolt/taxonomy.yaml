@@ -62,3 +62,13 @@ show_categories:
         premiere: Premiere
         guest_show: Gastspiel
         cancelled: Abgesagt
+
+contact_detail_categories:
+    name: Anzeigen in
+    slug: contact_categories
+    singular_slug: contact_category
+    behaves_like: categories
+    multiple: true
+    options:
+        footer: Footer
+        contact_page: Kontaktseite

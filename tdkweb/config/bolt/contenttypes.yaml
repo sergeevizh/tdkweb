@@ -177,20 +177,25 @@ people:
 # For more info, see: https://docs.bolt.cm/howto/resource-contenttype
 
 blocks:
-    name: Blocks
+    name: Blöcke
     singular_name: Block
-    excerpt_format: '{teaser}'
+    slug: blocks
+    singular_slug: block
+    title_format: "{block_name}"
     fields:
+        block_name:
+            type: text
+            label: Name
+            readonly: false
         title:
             type: text
             class: large
-            label: Title of this Block
-            group: Block
+            label: Titel
+        subtitle:
+            type: text
+            label: Untertitel
         image:
             type: image
-        teaser:
-            type: redactor
-            fixture_format: '{paragraph}'
         content:
             type: redactor
         contentlink:
@@ -201,8 +206,7 @@ blocks:
             fixture_format: '{url}'
         slug:
             type: slug
-            uses: [ title ]
-            group: Meta
+            uses: [ block_name ]
     show_on_dashboard: true
     viewless: true
     default_status: published
@@ -297,6 +301,9 @@ plays:
             info: "Das Vorschaubild sollte eine Bubble mit dem Alter haben"
             alt: true
             upload: sujets
+        slug:
+            type: slug
+            uses: title
     icon_many: fa:book
     icon_one: fa:book
     taxonomy: play_categories
@@ -324,6 +331,9 @@ shows:
             type: date
             mode: datetime
             required: true
+        slug:
+            type: slug
+            uses: [show_name, date]
     relations:
         plays:
             multiple: false
@@ -349,14 +359,17 @@ infos:
         content:
             label: "Inhalt"
             type: article
+        slug:
+            type: slug
+            uses: headline
     icon_many: fa:info-circle
     icon_one: fa:info-circle
         
-404-messages:
+404_messages:
     name: '404 Fehlermeldungen'
     singular_name: '404 Fehlermeldung'
-    slug: 404-messages
-    singular_slug: 404-message
+    slug: 404_messages
+    singular_slug: 404_message
     show_in_menu: Andere
     fields:
         message:
@@ -366,6 +379,31 @@ infos:
             label: Bild
             type: image
             required: false
+
+contact_details:
+    name: Kontaktdaten
+    singular_name: Kontaktdetail
+    slug: contact_details
+    singular_slug: contact_detail
+    show_in_menu: Andere
+    fields:
+        name:
+            type: text
+            label: Bezeichnung
+            info: "z.B.: Adresse, Telefonnummer, etc."
+            required: true
+        content:
+            type: text
+            label: Inhalt
+            required: true
+        icon:
+            type: text
+            label: Icon-Name
+            info: "Hier den Namen des gewünschten Icons von https://fonts.google.com/icons angeben. Achtung! Namen wie \"Shopping Cart\" müssen als \"shopping_cart\" angegeben werden!"
+        slug:
+            type: slug
+            uses: name
+    taxonomy: contact_detail_categories
 
 # Possible field types:
 #
