@@ -2,6 +2,7 @@ query Team{
     contents(contentType:"people"){
         edges{
             node{
+                id,
                 fieldValues,
                 taxonomyValues
             }
@@ -10,10 +11,80 @@ query Team{
 }
 
 query NotFoundError{
-    contents(contentType:"404-messages"){
+    contents(contentType:"404_messages"){
         edges{
             node{
+                id,
                 fieldValues
+            }
+        }
+    }
+}
+
+query Blocks{
+  contents(contentType: "blocks"){
+    edges{
+      node{
+      	fieldValues
+    }}
+  }
+}
+
+query Shows{
+    contents(contentType: "shows"){
+        edges{
+            node{
+                id,
+                fieldValues,
+                taxonomyValues
+            }
+        }
+    }
+}
+
+query ShowPlayRelations{
+    relations(fromContent: "shows", toContent: "plays"){
+        edges{
+            node{
+                id,
+                fromContent{
+                    id
+                },
+                toContent{
+                    id
+                }
+            }
+        }
+    }
+}
+
+query Play($id: ID!){
+    content(id: $id){
+        id,
+        fieldValues,
+        taxonomyValues
+    }
+}
+
+query ContactDetails{
+    contents(contentType: "contact_details"){
+        edges{
+            node{
+                id,
+                fieldValues,
+                taxonomyValues
+            }
+        }
+    }
+}
+
+query Infos{
+    contents(contentType: "infos"){
+        edges{
+            node{
+                id,
+                fieldValues,
+                taxonomyValues
             }
         }
     }
