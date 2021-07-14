@@ -282,7 +282,7 @@ export type TeamQuery = (
       { __typename?: 'ContentEdge' }
       & { node?: Maybe<(
         { __typename?: 'Content' }
-        & Pick<Content, 'fieldValues' | 'taxonomyValues'>
+        & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
       )> }
     )>>> }
   )> }
@@ -299,7 +299,112 @@ export type NotFoundErrorQuery = (
       { __typename?: 'ContentEdge' }
       & { node?: Maybe<(
         { __typename?: 'Content' }
+        & Pick<Content, 'id' | 'fieldValues'>
+      )> }
+    )>>> }
+  )> }
+);
+
+export type BlocksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BlocksQuery = (
+  { __typename?: 'Query' }
+  & { contents?: Maybe<(
+    { __typename?: 'ContentConnection' }
+    & { edges?: Maybe<Array<Maybe<(
+      { __typename?: 'ContentEdge' }
+      & { node?: Maybe<(
+        { __typename?: 'Content' }
         & Pick<Content, 'fieldValues'>
+      )> }
+    )>>> }
+  )> }
+);
+
+export type ShowsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ShowsQuery = (
+  { __typename?: 'Query' }
+  & { contents?: Maybe<(
+    { __typename?: 'ContentConnection' }
+    & { edges?: Maybe<Array<Maybe<(
+      { __typename?: 'ContentEdge' }
+      & { node?: Maybe<(
+        { __typename?: 'Content' }
+        & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
+      )> }
+    )>>> }
+  )> }
+);
+
+export type ShowPlayRelationsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ShowPlayRelationsQuery = (
+  { __typename?: 'Query' }
+  & { relations?: Maybe<(
+    { __typename?: 'RelationConnection' }
+    & { edges?: Maybe<Array<Maybe<(
+      { __typename?: 'RelationEdge' }
+      & { node?: Maybe<(
+        { __typename?: 'Relation' }
+        & Pick<Relation, 'id'>
+        & { fromContent: (
+          { __typename?: 'Content' }
+          & Pick<Content, 'id'>
+        ), toContent: (
+          { __typename?: 'Content' }
+          & Pick<Content, 'id'>
+        ) }
+      )> }
+    )>>> }
+  )> }
+);
+
+export type PlayQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type PlayQuery = (
+  { __typename?: 'Query' }
+  & { content?: Maybe<(
+    { __typename?: 'Content' }
+    & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
+  )> }
+);
+
+export type ContactDetailsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ContactDetailsQuery = (
+  { __typename?: 'Query' }
+  & { contents?: Maybe<(
+    { __typename?: 'ContentConnection' }
+    & { edges?: Maybe<Array<Maybe<(
+      { __typename?: 'ContentEdge' }
+      & { node?: Maybe<(
+        { __typename?: 'Content' }
+        & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
+      )> }
+    )>>> }
+  )> }
+);
+
+export type InfosQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type InfosQuery = (
+  { __typename?: 'Query' }
+  & { contents?: Maybe<(
+    { __typename?: 'ContentConnection' }
+    & { edges?: Maybe<Array<Maybe<(
+      { __typename?: 'ContentEdge' }
+      & { node?: Maybe<(
+        { __typename?: 'Content' }
+        & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
       )> }
     )>>> }
   )> }
@@ -310,6 +415,7 @@ export const TeamDocument = gql`
   contents(contentType: "people") {
     edges {
       node {
+        id
         fieldValues
         taxonomyValues
       }
@@ -330,9 +436,10 @@ export const TeamDocument = gql`
   }
 export const NotFoundErrorDocument = gql`
     query NotFoundError {
-  contents(contentType: "404-messages") {
+  contents(contentType: "404_messages") {
     edges {
       node {
+        id
         fieldValues
       }
     }
@@ -345,6 +452,148 @@ export const NotFoundErrorDocument = gql`
   })
   export class NotFoundErrorGQL extends Apollo.Query<NotFoundErrorQuery, NotFoundErrorQueryVariables> {
     document = NotFoundErrorDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const BlocksDocument = gql`
+    query Blocks {
+  contents(contentType: "blocks") {
+    edges {
+      node {
+        fieldValues
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class BlocksGQL extends Apollo.Query<BlocksQuery, BlocksQueryVariables> {
+    document = BlocksDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const ShowsDocument = gql`
+    query Shows {
+  contents(contentType: "shows") {
+    edges {
+      node {
+        id
+        fieldValues
+        taxonomyValues
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ShowsGQL extends Apollo.Query<ShowsQuery, ShowsQueryVariables> {
+    document = ShowsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const ShowPlayRelationsDocument = gql`
+    query ShowPlayRelations {
+  relations(fromContent: "shows", toContent: "plays") {
+    edges {
+      node {
+        id
+        fromContent {
+          id
+        }
+        toContent {
+          id
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ShowPlayRelationsGQL extends Apollo.Query<ShowPlayRelationsQuery, ShowPlayRelationsQueryVariables> {
+    document = ShowPlayRelationsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PlayDocument = gql`
+    query Play($id: ID!) {
+  content(id: $id) {
+    id
+    fieldValues
+    taxonomyValues
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PlayGQL extends Apollo.Query<PlayQuery, PlayQueryVariables> {
+    document = PlayDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const ContactDetailsDocument = gql`
+    query ContactDetails {
+  contents(contentType: "contact_details") {
+    edges {
+      node {
+        id
+        fieldValues
+        taxonomyValues
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ContactDetailsGQL extends Apollo.Query<ContactDetailsQuery, ContactDetailsQueryVariables> {
+    document = ContactDetailsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InfosDocument = gql`
+    query Infos {
+  contents(contentType: "infos") {
+    edges {
+      node {
+        id
+        fieldValues
+        taxonomyValues
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InfosGQL extends Apollo.Query<InfosQuery, InfosQueryVariables> {
+    document = InfosDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
