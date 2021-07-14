@@ -8,9 +8,14 @@
     <a routerLink="/info" routerLinkActive="active-nav-link">Infos</a>
     <a routerLink="/kontakt" routerLinkActive="active-nav-link">Kontakt</a>
     <a routerLink="/presse" routerLinkActive="active-nav-link">Presse</a>
+
+    <a class="yt-link" target="_blank" href="https://www.youtube.com/user/brunorisi/featured"><span class="iconify" data-icon="mdi-youtube"></span></a>
+    <a class="fb-link" target="_blank" href=""><span class="material-icons fb-icon">facebook</span></a>
   </nav>
 </div>
 
-<router-outlet></router-outlet>
+<div class="page-content">
+  <router-outlet></router-outlet>
+</div>
 
 <app-footer></app-footer>

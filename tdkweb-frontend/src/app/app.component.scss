@@ -1,9 +1,18 @@
 @import "/src/styles.scss";
 
+$toolbar-height: 80px;
+
 .toolbar{
-    height: 80px;
+    overflow: hidden;
+    width: 100%;
+    height: $toolbar-height;
     padding: 5px;
     background-color: white;
+    box-shadow: 0 1px 10px black;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 30px;
+    position: fixed;
+    top: 0;
 }
 
 .nav-link{
@@ -40,6 +49,28 @@
             color: white;
         }
     }
+
+    .socials-link{
+    }
+
+    .yt-link{
+        @extend .socials-link;
+        color: black;
+        font-size: 48px;
+
+        &:hover{
+            color: #ff1744;
+        }
+    }
+
+    .fb-link{
+       @extend .socials-link;
+       
+       .fb-icon{
+           @extend .socials-link;
+           font-size: 42px;
+       }
+    }
 }
 
 .tdk-footer{
@@ -49,4 +80,8 @@
     width: 100%;
     background-color: $primary-color;
     height: 200px;
+}
+
+.page-content{
+    margin-top: $toolbar-height + 20px;
 }
