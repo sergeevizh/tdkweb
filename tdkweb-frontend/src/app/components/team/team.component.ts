@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { TeamGQL, ContentEdge } from 'src/generated/graphql';
+import { TeamGQL, ContentEdge, BlocksGQL } from 'src/generated/graphql';
 
 const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
   list.reduce((previous, currentItem) => {
@@ -10,6 +10,12 @@ const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
     return previous;
   }, {} as Record<K, T[]>);
 
+type Department = {
+  key: string,
+  name: string,
+  people?: ContentEdge[]
+}
+
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
@@ -17,23 +23,37 @@ const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
 })
 export class TeamComponent implements OnInit {
 
-  departments?: Record<any, ContentEdge[]>;
+  departmentPeople?: Record<string, ContentEdge[]>;
+  departments?: Department[];
   people?: ContentEdge[];
   actors?: ContentEdge[];
   bts?: ContentEdge[];
   technitians?: ContentEdge[];
+  teamBlock?: ContentEdge;
 
-  constructor(private apollo: Apollo, private teamQuery: TeamGQL) { }
+  constructor(private apollo: Apollo, private teamQuery: TeamGQL, private blocksQuery: BlocksGQL) { }
 
   ngOnInit(): void {
-      this.teamQuery.watch().valueChanges.subscribe((result) => {
-        console.log(result);
-        this.people = result.data.contents.edges as ContentEdge[];
-        this.actors = this.people.filter(p => p.node?.taxonomyValues.actors == "Schauspiel");
-        this.bts = this.people.filter(p => p.node?.taxonomyValues.backstage == "Backstage");
-        this.technitians = this.people.filter(p => p.node?.taxonomyValues.lighting != null);
-        this.departments = groupBy((result.data.contents?.edges as ContentEdge[]), i => i.node?.taxonomyValues.departments);
+      this.blocksQuery.watch().valueChanges.subscribe((result) => {
+        this.teamBlock = result.data.contents?.edges?.find(b => b?.node?.fieldValues.slug == "team-einleitung") as ContentEdge;
       });
-      console.log(this.people);
+      this.teamQuery.watch().valueChanges.subscribe((result) => {
+        this.people = result?.data?.contents?.edges as ContentEdge[];
+        this.people = this.people.filter(p => Object.keys(p.node?.taxonomyValues).length > 0);
+        this.departmentPeople = groupBy(this.people, i => Object.keys(i.node?.taxonomyValues.departments)[0]);
+        console.log(this.departmentPeople);
+        console.log(Object.entries(this.departmentPeople))
+        this.departments = Object.keys(this.departmentPeople).map(i => {
+          return {
+            key: i,
+            name: (this?.departmentPeople?.[i][0].node?.taxonomyValues.departments?.[i]) as string,
+            people: this?.departmentPeople?.[i]
+          };
+        }).sort((a, b) => {
+          var textA = a.key.toUpperCase();
+          var textB = b.key.toUpperCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+      });
   }
 }

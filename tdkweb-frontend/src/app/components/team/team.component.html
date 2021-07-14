@@ -1,10 +1,15 @@
-<!-- <div *ngFor="let department of departments | keyvalue">
-    <h1>{{department.key}}</h1>
-    <app-person-teaser *ngFor="let person of department.value" [person]="person"></app-person-teaser>
+<div class="intro-block">
+    <div class="intro-text">
+        <h2>{{teamBlock?.node?.fieldValues.subtitle}}</h2>
+        <h1>{{teamBlock?.node?.fieldValues.title}}</h1>
+        <div [innerHTML]="teamBlock?.node?.fieldValues.content"></div>
+    </div>
+    <div class="intro-cover">
+        <img [src]="teamBlock?.node?.fieldValues.image.url">
+    </div>
 </div>
- -->
+<div *ngFor="let department of departments" class="department-block">
+    <h1>{{department.name}}</h1>
+    <app-person-teaser *ngFor="let person of department.people" [person]="person"></app-person-teaser>
+</div>
 
- <div>
-     <h1>Schauspiel</h1>
-     <app-person-teaser *ngFor="let person of actors" [person]="person"></app-person-teaser>
- </div>
