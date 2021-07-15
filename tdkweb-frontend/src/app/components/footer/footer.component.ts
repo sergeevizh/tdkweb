@@ -20,7 +20,6 @@ export class FooterComponent implements OnInit {
       this.contactDetails = result.data.contents?.edges
         ?.filter(d => Object.keys(d?.node?.taxonomyValues).includes("contact_categories"))
         .filter(d => Object.keys(d?.node?.taxonomyValues.contact_categories).includes("footer")) as ContentEdge[];
-      console.log(this.contactDetails);
     })
 
     this.blocksQuery.watch().valueChanges.subscribe(result => {

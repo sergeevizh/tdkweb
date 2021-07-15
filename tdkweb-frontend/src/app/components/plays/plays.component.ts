@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentEdge, PlaysGQL } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-plays',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaysComponent implements OnInit {
 
-  constructor() { }
+  seasonalPlays?: ContentEdge[];
+  archivedPlays?: ContentEdge[];
+  showArchive: boolean = false;
+
+  constructor(private playQuery: PlaysGQL) { }
 
   ngOnInit(): void {
+    this.playQuery.watch().valueChanges.subscribe(result => {
+      this.seasonalPlays = result.data.contents?.edges
+        ?.filter(p => Object.keys(p?.node?.taxonomyValues).includes("play_categories"))
+        .filter(p => Object.keys(p?.node?.taxonomyValues.play_categories).includes("current-season")) as ContentEdge[];
+      
+      this.archivedPlays = result.data.contents?.edges
+        ?.filter(p => Object.keys(p?.node?.taxonomyValues).includes("play_categories"))
+        .filter(p => Object.keys(p?.node?.taxonomyValues.play_categories).includes("archived")) as ContentEdge[];
+    });
+  }
+
+  toggleArchive(){
+    this.showArchive = !this.showArchive;
   }
 
 }

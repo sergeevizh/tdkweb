@@ -363,6 +363,23 @@ export type ShowPlayRelationsQuery = (
   )> }
 );
 
+export type PlaysQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PlaysQuery = (
+  { __typename?: 'Query' }
+  & { contents?: Maybe<(
+    { __typename?: 'ContentConnection' }
+    & { edges?: Maybe<Array<Maybe<(
+      { __typename?: 'ContentEdge' }
+      & { node?: Maybe<(
+        { __typename?: 'Content' }
+        & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
+      )> }
+    )>>> }
+  )> }
+);
+
 export type PlayQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -526,6 +543,30 @@ export const ShowPlayRelationsDocument = gql`
   })
   export class ShowPlayRelationsGQL extends Apollo.Query<ShowPlayRelationsQuery, ShowPlayRelationsQueryVariables> {
     document = ShowPlayRelationsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PlaysDocument = gql`
+    query Plays {
+  contents(contentType: "plays") {
+    edges {
+      node {
+        id
+        fieldValues
+        taxonomyValues
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PlaysGQL extends Apollo.Query<PlaysQuery, PlaysQueryVariables> {
+    document = PlaysDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

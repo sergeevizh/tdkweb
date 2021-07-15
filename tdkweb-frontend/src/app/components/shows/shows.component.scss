@@ -4,12 +4,38 @@
     margin: 20px;
 }
 
-.cal-btn{
-    width: 80px;
-    height: 30px;
-    text-align: center;
-    display: inline-block;
-    background-color: $accent-color;
-    color: whitesmoke;
-    border-radius: 5px;
+.cal-nav{
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: auto 40% auto;
+    align-items: center;
+    justify-content: center;
+
+    .curr-month{
+        text-align: center;
+        margin: 5px 0 0 0;
+        grid-column: 2 / 3;
+    }
 }
+
+.cal-btn{
+    min-width: 100px;
+    width: 100%;
+    margin: 0;
+
+    h2{
+        font-size: 2.5em;
+        font-weight: 400;
+    }
+
+    &.prev-date{
+        text-align: right;
+        grid-column: 1 / 2;
+    }
+
+    &.next-date{
+        text-align: left;
+        grid-column: 3 / 4;
+    }
+}
+

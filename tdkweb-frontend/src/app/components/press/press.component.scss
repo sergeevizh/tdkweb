@@ -1,0 +1,20 @@
+
+.play-block{
+    margin: 10px;
+
+    .play-img-gallery{
+        overflow: auto;
+        white-space: nowrap;
+
+        .play-img-block{
+            margin: 10px;
+            display: inline-block;
+
+            .play-img{
+                width: 350px;
+                height: 200px;
+                object-fit: cover;
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,9 @@ import { registerLocaleData } from '@angular/common';
 import localeDeAt from '@angular/common/locales/de-AT';
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { PlayTeaserComponent } from './components/play-teaser/play-teaser.component';
 registerLocaleData(localeDeAt);
 
 @NgModule({
@@ -38,7 +42,10 @@ registerLocaleData(localeDeAt);
     PersonTeaserComponent,
     PageNotFoundComponent,
     PersonComponent,
-    FooterComponent
+    FooterComponent,
+    ContactFormComponent,
+    FilterPipe,
+    PlayTeaserComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +53,8 @@ registerLocaleData(localeDeAt);
     GraphQLModule,
     HttpClientModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -58,6 +58,18 @@ query ShowPlayRelations{
     }
 }
 
+query Plays{
+    contents(contentType: "plays"){
+        edges{
+            node{
+                id,
+                fieldValues,
+                taxonomyValues
+            }
+        }
+    }
+}
+
 query Play($id: ID!){
     content(id: $id){
         id,

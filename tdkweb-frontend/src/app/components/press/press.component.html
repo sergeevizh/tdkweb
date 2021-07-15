@@ -1,1 +1,12 @@
-<p>press works!</p>
+<input type="text" [(ngModel)]="playFilter" placeholder="Suche">
+
+<div class="play-block" *ngFor="let play of plays">
+    <h1>{{play.node?.fieldValues.title}}</h1>
+    <div class="play-img-gallery">
+        <div class="play-img-block" *ngFor="let image of play.node?.fieldValues.images">
+            <a target="_blank" [href]="image.url">
+                <img class="play-img" [src]="image.url" alt="Cinque Terre" width="600" height="400">
+            </a>
+        </div>
+    </div>
+</div>

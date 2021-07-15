@@ -1,0 +1,10 @@
+<div class="play-teaser">
+    <img [src]="play?.node?.fieldValues.cover.url">
+    <div class="play-desc">
+        <h3>{{play?.node?.fieldValues.title}}</h3>
+        <div class="tdk-chips">
+            <span *ngIf="isPremiere()" class=" premiere-chip">Premiere</span>
+            <span *ngIf="isRenewal()" class="renewal-chip">Wiederaufnahme</span>
+        </div>
+    </div>
+</div>

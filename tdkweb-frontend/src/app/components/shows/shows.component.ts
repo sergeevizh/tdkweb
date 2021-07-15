@@ -29,4 +29,17 @@ export class ShowsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getPreviousMonth(): Date{
+    return this.getShiftedDate(this.viewDate, -1);
+  }
+
+  getNextMonth(): Date{
+    return this.getShiftedDate(this.viewDate, 1);
+  }
+
+  getShiftedDate(date: Date, shift: number): Date{
+    console.log(date, shift, new Date(date.getFullYear(), date.getMonth()+shift));
+    return new Date(date.getFullYear(), date.getMonth()+shift, date.getDay());
+  }
+
 }

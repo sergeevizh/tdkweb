@@ -1,0 +1,53 @@
+.play-teaser{
+    display: inline-block;
+    margin: 20px;
+    width: 400px;
+
+    img{
+        width: 100%;
+        aspect-ratio: 1/0.6;
+        object-fit: cover;
+    }
+
+    h3{
+        text-align: center;
+        font-size: 2em;
+        font-weight: 400;
+    }
+
+    .tdk-chips{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .play-chip{
+        border-radius: 20px;
+        height: 30px;
+        width: min-content;
+        min-width: 200px;
+        display: flex;
+        text-align: center;
+        align-self: center;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        font-weight: 300;
+        letter-spacing: 2px;
+    }
+
+    .premiere-chip{
+        @extend .play-chip;
+        background-color: chartreuse;
+    }
+
+    .renewal-chip{
+        @extend .play-chip;
+        background-color: orange;
+    }
+
+    .play-desc{
+    }
+}

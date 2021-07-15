@@ -1,26 +1,33 @@
-      <div
-        mwlCalendarPreviousView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        class="cal-btn"
-      >
-        Previous
-      </div>
-      <div
-        class="cal-btn"
-        mwlCalendarToday
-        [(viewDate)]="viewDate"
-      >
-        Today
-      </div>
-      <div
-        class="btn btn-primary"
-        mwlCalendarNextView
-        [view]="view"
-        [(viewDate)]="viewDate"
-      >
-        Next
-      </div>
+<div class="cal-nav">
+  <div
+      mwlCalendarPreviousView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      class="cal-btn prev-date"
+  >
+    <h2 class="prev-date">{{getPreviousMonth().toLocaleDateString(locale, {month: 'short'})}}</h2>
+  </div>
+  <div class="curr-month">
+    <h1>{{viewDate.toLocaleString(locale, { month: 'long' })}} {{viewDate.getFullYear()}}</h1>
+  </div>
+  <div
+      class="cal-btn"
+      mwlCalendarNextView
+      [view]="view"
+      [(viewDate)]="viewDate"
+    >
+    <h2 class="next-date">{{getNextMonth().toLocaleDateString(locale, {month: 'short'})}}</h2>
+  </div>
+  <!-- <div class="cal-btns">
+    
+    <div
+      class="btn btn-primary cal-btn"
+      mwlCalendarToday
+      [(viewDate)]="viewDate"
+    >Today</div>
+    
+  </div> -->
+</div>
 
 <div [ngSwitch]="view">
     <mwl-calendar-month-view 

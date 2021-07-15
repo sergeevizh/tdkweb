@@ -301,6 +301,10 @@ plays:
             info: "Das Vorschaubild sollte eine Bubble mit dem Alter haben"
             alt: true
             upload: sujets
+        images:
+            type: imagelist
+            label: "Bilder"
+            upload: gallery
         slug:
             type: slug
             uses: title
