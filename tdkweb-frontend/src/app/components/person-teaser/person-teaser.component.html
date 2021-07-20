@@ -1,5 +1,5 @@
 <a class="person-card" routerLink="person/{{person?.node?.fieldValues.slug}}">
-    <img *ngIf="person?.node != null && person?.node?.fieldValues != null" [src]="person?.node?.fieldValues.image.url">
+    <img class="list-image" *ngIf="person?.node != null && person?.node?.fieldValues != null" [src]="person?.node?.fieldValues.image.url">
     <h2>{{person?.node?.fieldValues.name}}</h2>
     <div class="description">{{person?.node?.fieldValues.description}}</div>
 </a>

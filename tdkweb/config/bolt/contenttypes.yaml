@@ -11,35 +11,19 @@ homepage:
         title:
             type: text
             class: large
-            group: content
-            localize: true
-            label: Title
-            postfix: |
-                The 'Homepage' can contain basic information about the website. This title will be
-                shown on the homepage of the website, as the name implies. To change the
-                <em><strong>name</strong></em> of the site, as is shown in the header, and the tab
-                in the webbrowser, edit <code>sitename:</code> in the configuration file.
-        image:
-            type: image
-        introduction:
-            type: redactor
-            localize: true
-        content:
-            type: redactor
-            localize: true
-        contentlink:
+            label: Überschrift
+            info: "Wird über dem Titelbild angezeigt"
+        saison:
             type: text
-            label: Link
-            placeholder: 'contentType/slug or https://example.org/'
-            postfix: "Use this to add a link for this Homepage. This could either be an 'internal' link like <tt>page//about</tt>, if you use a contentType/slug combination. Otherwise use a proper URL, like `https://example.org`."
-            fixture_format: '{url}'
+            label: Saison
+            placeholder: "2020/2021"
+        image:
+            label: Titelbild
+            type: image
         slug:
             type: slug
             uses: title
-            group: Meta
     viewless: false
-    taxonomy: [ categories, tags, foobars ]
-    locales: ['en', 'nl', 'pt_BR', 'es']
     singleton: true
     icon_many: "fa:home"
     icon_one: "fa:home"
@@ -97,39 +81,30 @@ pages:
 # shown above older entries.
 
 entries:
-    name: Entries
-    singular_name: Entry
+    name: Einträge
+    singular_name: Eintrag
+    slug: entries
+    singular_slug: entry
     fields:
         title:
             type: text
             class: large
-            group: Entry
-        teaser:
-            type: textarea
-            postfix: |
-                A text-only version of the content, that can be used to "tease"
-                the content when it's used in listing pages or search results.
+            label: Überschrift
+            required: true
         image:
+            label: Bild
             type: image
             upload: entries
-        body:
+        content:
+            label: Inhalt
             type: article
         video:
+            label: Video
             type: embed
         slug:
             type: slug
             uses: title
-            group: Meta
-    relations:
-        pages:
-            multiple: false
-            order: title
-            label: Select a page
-        people:
-            multiple: false
-            label: Author of this Entry
-            required: false
-    taxonomy: [ categories, tags, groups ]
+    taxonomy: [ entry_categories ]
     record_template: entry.twig
     listing_template: listing.twig
     listing_records: 10
@@ -187,6 +162,7 @@ blocks:
             type: text
             label: Name
             readonly: false
+            required: true
         title:
             type: text
             class: large
@@ -207,6 +183,7 @@ blocks:
         slug:
             type: slug
             uses: [ block_name ]
+    taxonomy: entry_categories
     show_on_dashboard: true
     viewless: true
     default_status: published

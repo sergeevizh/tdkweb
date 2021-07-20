@@ -1,13 +1,16 @@
 @import "/src/styles.scss";
 
+$transition-duration: .5s;
 
 img{
     width: 100%;
     aspect-ratio: 1/1.1;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .person-card{
+    transition-duration: $transition-duration;
     width: 270px;
     display: inline-block;
     margin: 20px;
@@ -27,7 +30,9 @@ img{
     }
     
     &:hover{
-        $transition-duration: .5s;
+        transition-duration: $transition-duration;
+        width: 300px;
+
         h2{
             transition-duration: $transition-duration;
             color: $accent-color;

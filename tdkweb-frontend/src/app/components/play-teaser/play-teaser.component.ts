@@ -11,6 +11,7 @@ export class PlayTeaserComponent implements OnInit {
   constructor() { }
 
   @Input("play") play?: ContentEdge;
+  @Input("show-chips") showChips: boolean = true;
 
   ngOnInit(): void {
   }

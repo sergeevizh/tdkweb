@@ -1,1 +1,31 @@
-<p>home works!</p>
+<div class="top-block">
+    <img [src]="homepage?.node?.fieldValues.image.url">
+    <h1>{{homepage?.node?.fieldValues.title}}</h1>
+</div>
+
+<div class="info-block">
+    <div class="info-segment" *ngFor="let block of blocks">
+        <div *ngIf="block.node?.fieldValues.image.url == ''" [innerHTML]="block.node?.fieldValues.content"></div>
+        <div *ngIf="block.node?.fieldValues.image.url != ''">
+            <a target="_blank" [href]="block.node?.fieldValues.contentlink" *ngIf="block.node?.fieldValues.contentlink != ''">
+                <img [src]="block.node?.fieldValues.image.url">
+            </a>
+            <img *ngIf="block.node?.fieldValues.contentlink == ''" [src]="block.node?.fieldValues.image.url">
+        </div>
+    </div>
+</div>
+
+<div class="premiere-block">
+    <h1>Unsere Premieren {{homepage?.node?.fieldValues.saison}}</h1>
+    <app-play-teaser *ngFor="let premiere of premieres" [play]="premiere" [show-chips]="false"></app-play-teaser>
+</div>
+
+<div class="renewal-block">
+    <h1>Wiederaufnahmen</h1>
+    <app-play-teaser *ngFor="let renewal of renewals" [play]="renewal" [show-chips]="false"></app-play-teaser>
+</div>
+
+<div class="actors-block">
+    <h1>Unsere Schauspieler*innen</h1>
+    <app-person-teaser *ngFor="let actor of actors" [person]="actor"></app-person-teaser>
+</div>

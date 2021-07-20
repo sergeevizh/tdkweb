@@ -73,3 +73,12 @@ contact_detail_categories:
         footer: Footer
         contact_page: Kontaktseite
         toolbar: Menüleiste
+
+entry_categories:
+    name: Anzeigen auf
+    slug: entry_categories
+    singular_slug: entry_categoriy
+    behaves_like: categories
+    multiple: true
+    options:
+        homepage: Homepage

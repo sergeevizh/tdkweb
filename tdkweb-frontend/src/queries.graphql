@@ -25,7 +25,9 @@ query Blocks{
   contents(contentType: "blocks"){
     edges{
       node{
-      	fieldValues
+        id,
+      	fieldValues,
+        taxonomyValues
     }}
   }
 }
@@ -92,6 +94,18 @@ query ContactDetails{
 
 query Infos{
     contents(contentType: "infos"){
+        edges{
+            node{
+                id,
+                fieldValues,
+                taxonomyValues
+            }
+        }
+    }
+}
+
+query Homepage{
+    contents(contentType: "homepage"){
         edges{
             node{
                 id,

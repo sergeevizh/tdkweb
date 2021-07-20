@@ -316,7 +316,7 @@ export type BlocksQuery = (
       { __typename?: 'ContentEdge' }
       & { node?: Maybe<(
         { __typename?: 'Content' }
-        & Pick<Content, 'fieldValues'>
+        & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
       )> }
     )>>> }
   )> }
@@ -427,6 +427,23 @@ export type InfosQuery = (
   )> }
 );
 
+export type HomepageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HomepageQuery = (
+  { __typename?: 'Query' }
+  & { contents?: Maybe<(
+    { __typename?: 'ContentConnection' }
+    & { edges?: Maybe<Array<Maybe<(
+      { __typename?: 'ContentEdge' }
+      & { node?: Maybe<(
+        { __typename?: 'Content' }
+        & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
+      )> }
+    )>>> }
+  )> }
+);
+
 export const TeamDocument = gql`
     query Team {
   contents(contentType: "people") {
@@ -479,7 +496,9 @@ export const BlocksDocument = gql`
   contents(contentType: "blocks") {
     edges {
       node {
+        id
         fieldValues
+        taxonomyValues
       }
     }
   }
@@ -635,6 +654,30 @@ export const InfosDocument = gql`
   })
   export class InfosGQL extends Apollo.Query<InfosQuery, InfosQueryVariables> {
     document = InfosDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const HomepageDocument = gql`
+    query Homepage {
+  contents(contentType: "homepage") {
+    edges {
+      node {
+        id
+        fieldValues
+        taxonomyValues
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class HomepageGQL extends Apollo.Query<HomepageQuery, HomepageQueryVariables> {
+    document = HomepageDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
