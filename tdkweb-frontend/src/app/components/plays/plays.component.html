@@ -1,6 +1,8 @@
 <div class="plays">
     <h1 class="play-header">Aktuelle Stücke</h1>
-    <app-play-teaser *ngFor="let play of seasonalPlays" [play]="play"></app-play-teaser>
+    <div class="play-grid">
+        <app-play-teaser *ngFor="let play of seasonalPlays" [play]="play"></app-play-teaser>
+    </div>
 
     <div class="archive-btn-container">
         <button (click)="toggleArchive()" [ngSwitch]="showArchive" class="btn archive-btn">
@@ -10,6 +12,8 @@
     </div>
     <div *ngIf="showArchive">
         <h1 class="play-header">Alte Stücke</h1>
-        <app-play-teaser *ngFor="let play of archivedPlays" [play]="play"></app-play-teaser>
+        <div class="play-grid">
+            <app-play-teaser *ngFor="let play of archivedPlays" [play]="play"></app-play-teaser>
+        </div>
     </div>
 </div>

@@ -15,6 +15,7 @@ export class PageNotFoundComponent implements OnInit {
   ngOnInit(): void {
     this.query.watch().valueChanges.subscribe(result => {
       let errors = result.data.contents?.edges as ContentEdge[];
+      console.log(errors);
       this.error = errors[Math.floor(Math.random() * errors.length)];
     })
   }

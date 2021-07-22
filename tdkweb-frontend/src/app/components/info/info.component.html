@@ -1,1 +1,12 @@
-<p>info works!</p>
+<h1 class="title">Informationen</h1>
+<div class="info-list">
+    <div class="info-block" *ngFor="let info of infos">
+        <h1>{{info.edge.node?.fieldValues.headline}}</h1>
+        <p>{{info.edge.node?.fieldValues.teaser}}</p>
+        <div [innerHTML]="info.edge.node?.fieldValues.content" *ngIf="info.expanded"></div>
+        <div class="btn btn-primary expand-btn" (click)="info.expanded = !info.expanded">
+            <span *ngIf="info.expanded">Einklappen</span>
+            <span *ngIf="!info.expanded">Ausklappen</span>
+        </div>
+    </div>
+</div>

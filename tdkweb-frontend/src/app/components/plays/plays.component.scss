@@ -1,5 +1,10 @@
 @import "/src/styles.scss";
 
+h1{
+    width: 100%;
+    text-align: center;
+}
+
 .archive-btn-container{
     display: flex;
     align-items: center;
@@ -9,6 +14,19 @@
         margin: 20px;
         border-radius: 15px;
         box-shadow: 0 0 20px rgba(0,0,0,0.25)
+    }
+}
+
+.play-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @media screen and (min-width: $landscape-breakpoint){
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (min-width: $tablet-breakpoint) {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 

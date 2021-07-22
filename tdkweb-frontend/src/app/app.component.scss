@@ -3,6 +3,7 @@
 $toolbar-height: 80px;
 
 .toolbar{
+    z-index: 100;
     overflow: hidden;
     width: 100%;
     height: $toolbar-height;

@@ -1,43 +1,47 @@
-<div class="cal-nav">
-  <div
-      mwlCalendarPreviousView
-      [view]="view"
-      [(viewDate)]="viewDate"
-      class="cal-btn prev-date"
-  >
-    <h2 class="prev-date">{{getPreviousMonth().toLocaleDateString(locale, {month: 'short'})}}</h2>
-  </div>
-  <div class="curr-month">
-    <h1>{{viewDate.toLocaleString(locale, { month: 'long' })}} {{viewDate.getFullYear()}}</h1>
-  </div>
-  <div
-      class="cal-btn"
-      mwlCalendarNextView
-      [view]="view"
-      [(viewDate)]="viewDate"
-    >
-    <h2 class="next-date">{{getNextMonth().toLocaleDateString(locale, {month: 'short'})}}</h2>
-  </div>
-  <!-- <div class="cal-btns">
-    
+<div class="calendar-container">
+  <div class="cal-nav">
+    <div class="cal-btn today-btn">
+      <h2 *ngIf="!isCurrentMonth" (click)="resetViewDate()">Heute</h2>
+    </div>
     <div
-      class="btn btn-primary cal-btn"
-      mwlCalendarToday
-      [(viewDate)]="viewDate"
-    >Today</div>
-    
-  </div> -->
-</div>
-
-<div [ngSwitch]="view">
-    <mwl-calendar-month-view 
-        class="shows-calendar"
-        *ngSwitchCase="'month'"
+        mwlCalendarPreviousView
+        [view]="view"
         [viewDate]="viewDate"
-        [events]="shows"
-        [locale]="locale"
-        [weekStartsOn]="weekStartsOn"
+        (viewDateChange)="setViewDate($event)"
+        class="cal-btn prev-date"
     >
-
-    </mwl-calendar-month-view>
+      <h2 class="prev-date">{{prevMonth?.toLocaleDateString(locale, {month: 'short'})}}</h2>
+    </div>
+    <div class="curr-month">
+      <h1>{{viewDate.toLocaleString(locale, { month: 'long' })}} {{viewDate.getFullYear()}}</h1>
+    </div>
+    <div
+        class="cal-btn"
+        mwlCalendarNextView
+        [view]="view"
+        [viewDate]="viewDate"
+        (viewDateChange)="setViewDate($event)"
+      >
+      <h2 class="next-date">{{nextMonth?.toLocaleDateString(locale, {month: 'short'})}}</h2>
+    </div>
+  
+    <div class="btn-group view-select">
+      <div class="btn btn-primary" (click)="changeView('month')" [class.active]="viewString == 'month'">Monat</div>
+      <div class="btn btn-primary" (click)="changeView('week')" [class.active]="viewString == 'week'">Woche</div>
+      <div class="btn btn-primary" (click)="changeView('list')" [class.active]="viewString == 'list'">Liste</div>
+    </div>
+  </div>
+  
+  <div [ngSwitch]="view">
+      <mwl-calendar-month-view 
+          class="shows-calendar"
+          *ngSwitchCase="'month'"
+          [viewDate]="viewDate"
+          [events]="shows"
+          [locale]="locale"
+          [weekStartsOn]="weekStartsOn"
+      >
+  
+      </mwl-calendar-month-view>
+  </div>
 </div>

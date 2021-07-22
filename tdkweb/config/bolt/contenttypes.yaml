@@ -337,12 +337,16 @@ infos:
             type: text
             class: large
             required: true
+        teaser:
+            label: Vorschautext
+            type: text
         content:
             label: "Inhalt"
             type: article
         slug:
             type: slug
             uses: headline
+    taxonomy: entry_categories
     icon_many: fa:info-circle
     icon_one: fa:info-circle
         
@@ -355,7 +359,7 @@ infos:
     fields:
         message:
             label: Nachricht
-            type: text
+            type: redactor
         image:
             label: Bild
             type: image

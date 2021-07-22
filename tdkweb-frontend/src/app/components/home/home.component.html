@@ -17,15 +17,21 @@
 
 <div class="premiere-block">
     <h1>Unsere Premieren {{homepage?.node?.fieldValues.saison}}</h1>
-    <app-play-teaser *ngFor="let premiere of premieres" [play]="premiere" [show-chips]="false"></app-play-teaser>
+    <div class="play-grid">
+        <app-play-teaser *ngFor="let premiere of premieres" [play]="premiere" [show-chips]="false"></app-play-teaser>
+    </div>
 </div>
 
 <div class="renewal-block">
     <h1>Wiederaufnahmen</h1>
-    <app-play-teaser *ngFor="let renewal of renewals" [play]="renewal" [show-chips]="false"></app-play-teaser>
+    <div class="play-grid">
+        <app-play-teaser *ngFor="let renewal of renewals" [play]="renewal" [show-chips]="false"></app-play-teaser>
+    </div>
 </div>
 
 <div class="actors-block">
     <h1>Unsere Schauspieler*innen</h1>
-    <app-person-teaser *ngFor="let actor of actors" [person]="actor"></app-person-teaser>
+    <div class="actor-grid">
+        <app-person-teaser *ngFor="let actor of actors" [person]="actor"></app-person-teaser>
+    </div>
 </div>

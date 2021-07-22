@@ -10,6 +10,8 @@
 </div>
 <div *ngFor="let department of departments" class="department-block">
     <h1>{{department.name}}</h1>
-    <app-person-teaser *ngFor="let person of department.people" [person]="person"></app-person-teaser>
+    <div class="person-grid">
+        <app-person-teaser *ngFor="let person of department.people" [person]="person"></app-person-teaser>
+    </div>
 </div>
 

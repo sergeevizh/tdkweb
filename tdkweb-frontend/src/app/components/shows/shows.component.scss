@@ -2,19 +2,31 @@
 
 .shows-calendar{
     margin: 20px;
+    grid-row: calendar;
+}
+
+.calendar-container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: [cal-nav] auto [calendar] 1fr;
 }
 
 .cal-nav{
+    grid-row: cal-nav;
     width: 100%;
-    display: inline-grid;
-    grid-template-columns: auto 40% auto;
+    display: grid;
+    grid-template-columns: [first] 1fr [prev] 1fr [today] 40% [next] 1fr [last] 1fr;
+    grid-template-rows: [cal-nav] 100px 30px;
     align-items: center;
     justify-content: center;
 
     .curr-month{
         text-align: center;
         margin: 5px 0 0 0;
-        grid-column: 2 / 3;
+        grid-row-start: 1;
+        grid-column-start: today;
     }
 }
 
@@ -28,14 +40,29 @@
         font-weight: 400;
     }
 
+    &.today-btn{
+        margin: 10px;
+        text-align: left;
+        grid-row-start: 1;
+        grid-column-start: first;
+        cursor: pointer;
+    }
+
     &.prev-date{
         text-align: right;
-        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        grid-column-start: prev;
     }
 
     &.next-date{
         text-align: left;
-        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+        grid-column-start: next;
     }
 }
 
+.view-select{
+    grid-row: 1 / 2;
+    grid-column-start: last;
+    margin: 10px;
+}

@@ -82,3 +82,4 @@ entry_categories:
     multiple: true
     options:
         homepage: Homepage
+        infopage: Info-Seite
