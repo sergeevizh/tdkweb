@@ -1,15 +1,43 @@
+<!-- <div class="toolbar">
+  <nav class="tdk-topnav">
+    <a routerLink="/home" routerLinkActive="active-nav-link" class="nav-link home"><span>Home</span></a>
+    <a routerLink="/stuecke" routerLinkActive="active-nav-link" class="nav-link plays">Stücke</a>
+    <a routerLink="/vorstellungen" routerLinkActive="active-nav-link" class="nav-link shows">Spielplan & Karten</a>
+    <a routerLink="/team" routerLinkActive="active-nav-link" class="nav-link team">Team</a>
+    <a routerLink="/info" routerLinkActive="active-nav-link" class="nav-link info">Infos & Preise</a>
+    <a routerLink="/kontakt" routerLinkActive="active-nav-link" class="nav-link contact">Kontakt</a>
+    <a routerLink="/presse" routerLinkActive="active-nav-link" class="nav-link press">Presse</a>
+
+    <div class="socials">
+      <a class="yt-link" target="_blank" href="https://www.youtube.com/user/brunorisi/featured"><span class="iconify" data-icon="mdi-youtube"></span></a>
+      <a class="fb-link" target="_blank" href="https://www.facebook.com/KinderundErwachsene/"><span class="material-icons fb-icon">facebook</span></a>
+    </div>
+
+    <div class="material-icons nav-menu" (click)="menuOpen = !menuOpen">menu</div>
+  </nav>
+</div> -->
+
 <div class="toolbar">
   <nav class="tdk-topnav">
-    <a routerLink="/home" routerLinkActive="active-nav-link">Home</a>
-    <a routerLink="/stuecke" routerLinkActive="active-nav-link">Stücke</a>
-    <a routerLink="/vorstellungen" routerLinkActive="active-nav-link">Spielplan & Karten</a>
-    <a routerLink="/team" routerLinkActive="active-nav-link">Team</a>
-    <a routerLink="/info" routerLinkActive="active-nav-link">Infos & Preise</a>
-    <a routerLink="/kontakt" routerLinkActive="active-nav-link">Kontakt</a>
-    <a routerLink="/presse" routerLinkActive="active-nav-link">Presse</a>
+    <a (click)="menuOpen = false" routerLink="/home" routerLinkActive="active-nav-link" class="tdk-nav-link home">Home</a>
 
-    <a class="yt-link" target="_blank" href="https://www.youtube.com/user/brunorisi/featured"><span class="iconify" data-icon="mdi-youtube"></span></a>
-    <a class="fb-link" target="_blank" href="https://www.facebook.com/KinderundErwachsene/"><span class="material-icons fb-icon">facebook</span></a>
+    <div class="material-icons nav-menu" (click)="menuOpen = !menuOpen">menu</div>
+    
+    <a (click)="menuOpen = false" *ngFor="let link of navLinks" [routerLink]="'/' + link.link" routerLinkActive="active-nav-link" class="tdk-nav-link {{link.link}}">{{link.name}}</a>
+    <div class="socials">
+      <a class="yt-link" target="_blank" href="https://www.youtube.com/user/brunorisi/featured"><span class="iconify" data-icon="mdi-youtube"></span></a>
+      <a class="fb-link" target="_blank" href="https://www.facebook.com/KinderundErwachsene/"><span class="material-icons fb-icon">facebook</span></a>
+    </div>
+  </nav>
+</div>
+
+<div class="nav-menu" *ngIf="menuOpen">
+  <nav class="tdk-sidenav">
+    <a (click)="menuOpen = false" *ngFor="let link of navLinks" [routerLink]="'/' + link.link" routerLinkActive="active-nav-link" class="tdk-nav-link {{link.link}}">{{link.name}}</a>
+    <div class="socials">
+      <a class="yt-link" target="_blank" href="https://www.youtube.com/user/brunorisi/featured"><span class="iconify" data-icon="mdi-youtube"></span></a>
+      <a class="fb-link" target="_blank" href="https://www.facebook.com/KinderundErwachsene/"><span class="material-icons fb-icon">facebook</span></a>
+    </div>
   </nav>
 </div>
 

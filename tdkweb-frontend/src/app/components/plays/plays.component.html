@@ -11,7 +11,7 @@
         </button>
     </div>
     <div *ngIf="showArchive">
-        <h1 class="play-header">Alte Stücke</h1>
+        <h1 class="play-header">Archiv</h1>
         <div class="play-grid">
             <app-play-teaser *ngFor="let play of archivedPlays" [play]="play"></app-play-teaser>
         </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { compareAsc, parseISO } from 'date-fns';
 import { ContentEdge, PlaysGQL } from 'src/generated/graphql';
 
 @Component({
@@ -16,11 +17,16 @@ export class PlaysComponent implements OnInit {
 
   ngOnInit(): void {
     this.playQuery.watch().valueChanges.subscribe(result => {
-      this.seasonalPlays = result.data.contents?.edges
+      let plays = result.data.contents?.edges;
+      /* let plays = result.data.contents?.edges?.sort((a, b) => {
+        return compareAsc(parseISO(a?.node?.fieldValues.premiere_date), parseISO(b?.node?.fieldValues.premiere_date));
+      }) */
+
+      this.seasonalPlays = plays
         ?.filter(p => Object.keys(p?.node?.taxonomyValues).includes("play_categories"))
         .filter(p => Object.keys(p?.node?.taxonomyValues.play_categories).includes("current-season")) as ContentEdge[];
       
-      this.archivedPlays = result.data.contents?.edges
+      this.archivedPlays = plays
         ?.filter(p => Object.keys(p?.node?.taxonomyValues).includes("play_categories"))
         .filter(p => Object.keys(p?.node?.taxonomyValues.play_categories).includes("archived")) as ContentEdge[];
     });

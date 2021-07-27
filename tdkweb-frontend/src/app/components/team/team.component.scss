@@ -41,15 +41,15 @@
     display: grid;
     grid-template-columns: 1fr;
 
-    @media screen and (min-width: $mobile-breakpoint){
+    @media screen and (min-width: $landscape-breakpoint){
         grid-template-columns: 1fr 1fr;
     }
 
-    @media screen and (min-width: $landscape-breakpoint){
+    @media screen and (min-width: $tablet-breakpoint){
         grid-template-columns: 1fr 1fr 1fr;
     }
 
-    @media screen and (min-width: $tablet-breakpoint) {
+    @media screen and (min-width: $desktop-breakpoint) {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }

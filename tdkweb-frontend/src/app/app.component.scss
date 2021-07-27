@@ -2,9 +2,166 @@
 
 $toolbar-height: 80px;
 
+@mixin menu-btn{
+    .nav-menu{
+        margin: 0 15px 0 0;
+        display: flex;
+        color: black;
+    }
+}
+
+@mixin nav-link {
+    .tdk-nav-link {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+
+        text-decoration: none;
+        text-align: center;
+        color: black;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        transition-duration: .3s;
+
+        grid-row: nav-row;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+            color: $accent-color;
+            transition-duration: .3s;
+        }
+
+    }
+
+    .active-nav-link, .active-nav-link:focus{
+        color: white;
+        background-color: black;
+        transition-duration: .3s;
+
+        &:hover{
+            background-color: $accent-color;
+            color: white;
+            transition-duration: .3s;
+        }
+    }
+}
+
+@mixin tablet-top-nav{
+
+    grid-template-columns: [home] 1fr [plays] 1fr [shows] 1fr [team] 1fr [info] 1fr [menu] auto;
+
+    .kontakt{
+        display: none;
+    }
+
+    .presse{
+        display: none;
+    }
+
+    .socials{
+        display: none;
+    }
+}
+
+@mixin mobile-top-nav{
+    @include tablet-top-nav;
+
+    grid-template-columns: [home] 1fr [menu] auto;
+
+    .stuecke{
+        display: none;
+    }
+    .vorstellungen{
+        display: none;
+    }
+    .team{
+        display: none;
+    }
+    .info{
+        display: none;
+    }
+
+}
+
+@mixin tablet-side-nav{
+
+    grid-template-rows: [contact] 1fr [press] 1fr [socials] 1fr;
+    
+    .kontakt{
+        display: flex;
+    }
+
+    .presse{
+        display: flex;
+    }
+
+    .socials{
+        display: flex;
+    }
+}
+
+@mixin mobile-side-nav{
+    @include tablet-side-nav;
+    grid-template-rows: [plays] 1fr [shows] 1fr [team] 1fr [info] 1fr [contact] 1fr [press] 1fr [socials] 1fr;
+
+    .stuecke{
+        display: flex;
+    }
+
+    .vorstellungen{
+        display: flex;
+    }
+
+    .team{
+        display: flex;
+    }
+
+    .info{
+        display: flex;
+    }
+}
+
+.socials{
+    display: grid;
+    grid-template-columns: [yt] 1fr [fb] 1fr;
+    justify-items: end;
+
+    .socials-link{
+    }
+
+    .yt-link{
+        @extend .socials-link;
+        grid-column: yt;
+        justify-self: end;
+        color: #ff1744;
+        font-size: 48px;
+
+        &:hover{
+            color: $primary-color;
+        }
+    }
+    
+    .fb-link{
+        @extend .socials-link;
+        grid-column: fb;
+        color: #0277bd;
+        justify-self: center;
+        align-self: center;
+        
+        .fb-icon{
+            font-size: 42px;
+        }
+
+        &:hover{
+            color: $primary-color;
+        }
+    }
+}
+
 .toolbar{
+    display: flex;
     z-index: 100;
-    overflow: hidden;
     width: 100%;
     height: $toolbar-height;
     padding: 5px;
@@ -14,77 +171,119 @@ $toolbar-height: 80px;
     margin-bottom: 30px;
     position: fixed;
     top: 0;
+    align-items: center;
 }
-
-.nav-link{
-    border-radius: 10px;
-    min-width: 80px;
-    margin: 20px;
-    margin-top: 0;
-    text-decoration: none;
-    text-align: center;
-    color: black;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: inline-block;
-}
-
 
 .tdk-topnav{
+    display: grid;
     height: 100%;
-    line-height: 50px;
+    width: 100%;
+    grid-template-columns: [home] 1fr [plays] 1fr [shows] 1fr [team] 1fr [info] 1fr [contact] 1fr [press] 1fr [socials] 1fr;
+    grid-template-rows: [nav-row] 100%;
+    place-items: center;
+    column-gap: 10px;
 
-    a {
-        @extend .nav-link;
-        vertical-align: middle;
+    @include nav-link;
 
-        &:hover{
-            color: $accent-color;
-        }
-    }
-    
-    .active-nav-link, .active-nav-link:focus{
-        @extend .nav-link;
-        color: white;
-        background-color: black;
-
-        &:hover{
-            background-color: $accent-color;
-            color: white;
-        }
+    .home{
+        grid-column: home;
     }
 
-    .socials-link{
-        text-align: center;
-        display: inline-flex;
-        min-width: 60px;
-        width: auto;
+    .stuecke{
+        grid-column: plays;
     }
 
-    .yt-link{
-        @extend .socials-link;
-        color: #ff1744;
-        font-size: 48px;
-        margin-right: 0;
-        margin-left: 50px;
-
-        &:hover{
-            color: $primary-color;
-        }
+    .vorstellungen{
+        grid-column: shows;
     }
 
-    .fb-link{
-        @extend .socials-link;
-        line-height: 50px;
-        margin-left: 0;
-        color: #0277bd;
-       
-        .fb-icon{
-            font-size: 42px;
-        }
+    .team{
+        grid-column: team;
+    }
 
-        &:hover{
-            color: $primary-color;
-        }
+    .info{
+        grid-column: info;
+    }
+
+    .kontakt{
+        grid-column: contact;
+    }
+
+    .presse{
+        grid-column: press;
+    }
+
+    .socials{
+        grid-column: socials;
+    }
+
+    .nav-menu{
+        display: none;
+        grid-column: menu;
+    }
+
+    @media screen and (max-width: $tablet-breakpoint) {
+        @include menu-btn;
+        @include tablet-top-nav;
+    }
+
+    @media screen and (max-width: $landscape-breakpoint) {
+        @include menu-btn;
+        @include mobile-top-nav;
+    }
+}
+
+.tdk-sidenav{
+    margin: 10px;
+    margin-top: $toolbar-height + 20px;
+    display: grid;
+    grid-template-rows: [plays] 1fr [shows] 1fr [team] 1fr [info] 1fr [contact] 1fr [press] 1fr [socials] 1fr;
+    gap: 5px;
+    justify-items: end;
+
+    @include nav-link;
+
+    .stuecke{
+        grid-row: plays;
+        display: none;
+    }
+
+    .vorstellungen{
+        grid-row: shows;
+        display: none;
+    }
+
+    .team{
+        grid-row: team;
+        display: none;
+    }
+
+    .info{
+        grid-row: info;
+        display: none;
+    }
+
+    .kontakt{
+        grid-row: contact;
+        display: none;
+    }
+
+    .presse{
+        grid-row: press;
+        display: none;
+    }
+
+    .socials{
+        grid-row: socials;
+        display: none;
+    }
+
+    @media screen and (max-width: $tablet-breakpoint) {
+        @include tablet-side-nav;
+    }
+
+    @media screen and (max-width: $landscape-breakpoint) {
+        @include mobile-side-nav;
     }
 }
 
@@ -100,3 +299,4 @@ $toolbar-height: 80px;
 .page-content{
     margin-top: $toolbar-height + 20px;
 }
+

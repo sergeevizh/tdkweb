@@ -3,7 +3,7 @@
 .play-teaser{
     margin: 20px;
 
-    @media (max-width: $mobile-breakpoint){
+    @media (max-width: $landscape-breakpoint){
         margin: 5px;
     }
 
@@ -20,7 +20,7 @@
         font-size: 2em;
         font-weight: 400;
 
-        @media (max-width: $tablet-breakpoint){
+        @media (max-width: $desktop-breakpoint){
             font-size: 1.5em;
         }
     }

@@ -25,7 +25,7 @@ h1{
         grid-template-columns: 1fr 1fr;
     }
 
-    @media screen and (min-width: $tablet-breakpoint) {
+    @media screen and (min-width: $desktop-breakpoint) {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }

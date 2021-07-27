@@ -25,7 +25,7 @@
         font-size: 5em;
         text-shadow: 1px 1px black;
 
-        @media (max-width: $mobile-breakpoint){
+        @media (max-width: $landscape-breakpoint){
             font-size: 3em;
         }
     }
@@ -37,7 +37,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    @media screen and (max-width: $mobile-breakpoint) {
+    @media screen and (max-width: $landscape-breakpoint) {
         grid-template-columns: 1fr;
     }
 
@@ -53,7 +53,7 @@
             max-height: 100%;
             object-fit: cover;
 
-            @media screen and (max-width: $mobile-breakpoint){
+            @media screen and (max-width: $landscape-breakpoint){
                 max-width: 70%;
             }
         }
@@ -80,11 +80,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 
-    @media screen and (max-width: $landscape-breakpoint){
+    @media screen and (max-width: $tablet-breakpoint){
         grid-template-columns: 1fr 1fr;
     }
 
-    @media screen and (max-width: $mobile-breakpoint){
+    @media screen and (max-width: $landscape-breakpoint){
         grid-template-columns: 1fr;
     }
 }
@@ -93,11 +93,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 
-    @media screen and (max-width: $landscape-breakpoint){
+    @media screen and (max-width: $tablet-breakpoint){
         grid-template-columns: 1fr 1fr;
     }
 
-    @media screen and (max-width: $mobile-breakpoint){
+    @media screen and (max-width: $landscape-breakpoint){
         grid-template-columns: 1fr;
     }
 }

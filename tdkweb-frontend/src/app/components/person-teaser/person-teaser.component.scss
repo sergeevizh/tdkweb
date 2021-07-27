@@ -28,7 +28,7 @@ img{
         font-size: 1.5em;
         transition-duration: $transition-duration;
 
-        @media screen and (max-width: $mobile-breakpoint) {
+        @media screen and (max-width: $landscape-breakpoint) {
             font-size: 1.5em;
         }
     }

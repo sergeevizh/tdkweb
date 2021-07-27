@@ -265,6 +265,9 @@ plays:
             type: text
             info: "Der Text wird über dem Team des Stücks angezeigt"
             variant: inline
+        premiere_date:
+            label: Premierendatum
+            type: date
         team:
             label: "Team"
             type: article
@@ -288,6 +291,7 @@ plays:
     icon_many: fa:book
     icon_one: fa:book
     taxonomy: play_categories
+    sort: -premiere_date
     relations:
         people:
             multiple: true
@@ -349,7 +353,30 @@ infos:
     taxonomy: entry_categories
     icon_many: fa:info-circle
     icon_one: fa:info-circle
-        
+
+tutorials:
+    name: Tutorials
+    singular_name: Tutorial
+    slug: tutorials
+    singular_slug: tutorial
+    fields:
+        title:
+            type: text
+            class: large
+            label: Überschrift
+            required: true
+        content:
+            label: Inhalt
+            type: article
+        slug:
+            type: slug
+            uses: title
+    default_status: held
+    order: -publishedAt
+    icon_many: "fa:graduation-cap"
+    icon_one: "fa:user-graduation"
+    
+
 404_messages:
     name: '404 Fehlermeldungen'
     singular_name: '404 Fehlermeldung'
