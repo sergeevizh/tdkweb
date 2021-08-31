@@ -339,7 +339,22 @@ export type ShowsQuery = (
   )> }
 );
 
-export type ShowPlayRelationsQueryVariables = Exact<{ [key: string]: never; }>;
+export type ShowQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type ShowQuery = (
+  { __typename?: 'Query' }
+  & { content?: Maybe<(
+    { __typename?: 'Content' }
+    & Pick<Content, 'id' | 'contentType' | 'fieldValues' | 'taxonomyValues'>
+  )> }
+);
+
+export type ShowPlayRelationsQueryVariables = Exact<{
+  id?: Maybe<Scalars['String']>;
+}>;
 
 
 export type ShowPlayRelationsQuery = (
@@ -389,7 +404,7 @@ export type PlayQuery = (
   { __typename?: 'Query' }
   & { content?: Maybe<(
     { __typename?: 'Content' }
-    & Pick<Content, 'id' | 'fieldValues' | 'taxonomyValues'>
+    & Pick<Content, 'id' | 'contentType' | 'fieldValues' | 'taxonomyValues'>
   )> }
 );
 
@@ -539,9 +554,30 @@ export const ShowsDocument = gql`
       super(apollo);
     }
   }
+export const ShowDocument = gql`
+    query Show($id: ID!) {
+  content(id: $id) {
+    id
+    contentType
+    fieldValues
+    taxonomyValues
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ShowGQL extends Apollo.Query<ShowQuery, ShowQueryVariables> {
+    document = ShowDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const ShowPlayRelationsDocument = gql`
-    query ShowPlayRelations {
-  relations(fromContent: "shows", toContent: "plays") {
+    query ShowPlayRelations($id: String) {
+  relations(fromContent: $id) {
     edges {
       node {
         id
@@ -595,6 +631,7 @@ export const PlayDocument = gql`
     query Play($id: ID!) {
   content(id: $id) {
     id
+    contentType
     fieldValues
     taxonomyValues
   }

@@ -44,8 +44,17 @@ query Shows{
     }
 }
 
-query ShowPlayRelations{
-    relations(fromContent: "shows", toContent: "plays"){
+query Show($id: ID!) {
+    content(id: $id){
+        id,
+        contentType,
+        fieldValues,
+        taxonomyValues
+    }
+}
+
+query ShowPlayRelations($id: String){
+    relations(fromContent: $id){
         edges{
             node{
                 id,
@@ -75,6 +84,7 @@ query Plays{
 query Play($id: ID!){
     content(id: $id){
         id,
+        contentType,
         fieldValues,
         taxonomyValues
     }

@@ -1,4 +1,4 @@
-<div class="calendar-container">
+<div class="calendar-container" style="display: none;">
   <div class="cal-nav">
     <div class="cal-btn today-btn">
       <h2 *ngIf="!isCurrentMonth" (click)="resetViewDate()">Heute</h2>
@@ -37,11 +37,63 @@
           class="shows-calendar"
           *ngSwitchCase="'month'"
           [viewDate]="viewDate"
-          [events]="shows"
+          [events]="events"
           [locale]="locale"
           [weekStartsOn]="weekStartsOn"
+          [activeDayIsOpen]="activeDayIsOpen"
+          (dayClicked)="dayClicked($event.day)"
+          [refresh]="refresh"
       >
   
       </mwl-calendar-month-view>
+  </div>
+</div>
+
+<div class="calendar-container">
+  <div class="cal-nav">
+    <div class="cal-btn today-btn">
+      <h2 *ngIf="!isCurrentMonth" (click)="resetViewDate()">Heute</h2>
+    </div>
+    <div
+        mwlCalendarPreviousView
+        [view]="view"
+        [viewDate]="viewDate"
+        (viewDateChange)="setViewDate($event)"
+        class="cal-btn prev-date"
+    >
+      <h2 class="prev-date">{{prevMonth?.toLocaleDateString(locale, {month: 'short'})}}</h2>
+    </div>
+    <div class="curr-month">
+      <h1>{{viewDate.toLocaleString(locale, { month: 'long' })}} {{viewDate.getFullYear()}}</h1>
+    </div>
+    <div
+        class="cal-btn"
+        mwlCalendarNextView
+        [view]="view"
+        [viewDate]="viewDate"
+        (viewDateChange)="setViewDate($event)"
+      >
+      <h2 class="next-date">{{nextMonth?.toLocaleDateString(locale, {month: 'short'})}}</h2>
+    </div>
+  </div>
+
+  <div class="shows-list">
+    <div *ngFor="let show of showEvents">
+      <div *ngIf="showIsInMonth(show)" class="show-item">
+        <img [src]="show.play?.fieldValues.cover.url" class="list-image show-cover">
+        <a><h1 class="show-title">{{show.play?.fieldValues.title}}</h1></a>
+        <h2 class="show-date">{{getFormattedDate(show.show?.fieldValues.date)}}</h2>
+        <div class="show-tags tdk-chips">
+          <div *ngFor="let tag of getTaxonomies(show)" [class]="{
+            'sold-out-chip': tag=='Ausverkauft',
+            'premiere-chip': tag=='Premiere',
+            'guest-show-chip': tag=='Gastspiel',
+            'cancelled-chip': tag=='Abgesagt'
+          }">
+            {{tag}}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

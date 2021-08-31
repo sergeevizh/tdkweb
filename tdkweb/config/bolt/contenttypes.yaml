@@ -297,6 +297,9 @@ plays:
             multiple: true
             label: "Team"
             format: "{name}"
+        event_colors:
+            label: Kalenderfarbe
+        
 
 shows:
     name: Vorstellungen
@@ -417,6 +420,31 @@ contact_details:
             uses: name
     taxonomy: contact_detail_categories
 
+event_colors:
+    name: Kalenderfarben
+    singular_name: Kalenderfarbe
+    slug: event_colors
+    singular_slug: event_color
+    show_in_menu: Andere
+    fields:
+        name:
+            type: text
+            label: Bezeichnung
+            required: true
+        primary_color:
+            type: text
+            label: Primärfarbe
+            info: "Nur CSS-Farben gültig! z.B.: red, #ff0000, rgb(1,0,0), etc."
+            required: true
+        accent_color:
+            type: text
+            label: Akzentfarbe
+            info: "Nur CSS-Farben gültig! z.B.: red, #ff0000, rgb(1,0,0), etc."
+            required: true
+        slug:
+            type: slug
+            uses: name
+        
 # Possible field types:
 #
 # text - varchar(256) - input type text.

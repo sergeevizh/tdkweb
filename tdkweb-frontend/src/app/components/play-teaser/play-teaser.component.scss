@@ -50,12 +50,12 @@
 
     .premiere-chip{
         @extend .play-chip;
-        background-color: chartreuse;
+        background-color: $green-tag;
     }
 
     .renewal-chip{
         @extend .play-chip;
-        background-color: orange;
+        background-color: $orange-tag;
     }
 
     .play-desc{

@@ -1,5 +1,6 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { PlayTeaserComponent } from './components/play-teaser/play-teaser.component';
+import { ShowsFilterPipe } from './pipes/shows-filter.pipe';
 registerLocaleData(localeDeAt);
 
 @NgModule({
@@ -45,10 +47,12 @@ registerLocaleData(localeDeAt);
     FooterComponent,
     ContactFormComponent,
     FilterPipe,
-    PlayTeaserComponent
+    PlayTeaserComponent,
+    ShowsFilterPipe
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
