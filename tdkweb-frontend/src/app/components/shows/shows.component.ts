@@ -110,4 +110,8 @@ export class ShowsComponent implements OnInit {
     return Object.values(show.show?.taxonomyValues.show_categories);
   }
 
+  isShowPast(show: ShowEvent): boolean{
+    return parseISO(show.show?.fieldValues.date) < this.today;
+  }
+
 }

@@ -81,8 +81,12 @@
     <div *ngFor="let show of showEvents">
       <div *ngIf="showIsInMonth(show)" class="show-item">
         <img [src]="show.play?.fieldValues.cover.url" class="list-image show-cover">
-        <a><h1 class="show-title">{{show.play?.fieldValues.title}}</h1></a>
+        <h1 class="show-title">{{show.play?.fieldValues.title}} {{show.show?.fieldValues.postfix}}</h1>
         <h2 class="show-date">{{getFormattedDate(show.show?.fieldValues.date)}}</h2>
+        <div class="show-buttons">
+          <a class="btn btn-outline-primary btn-lg">Infos zum Stück</a>
+          <button class="btn btn-primary btn-lg" [disabled]="isShowPast(show)">Karten</button>
+        </div>
         <div class="show-tags tdk-chips">
           <div *ngFor="let tag of getTaxonomies(show)" [class]="{
             'sold-out-chip': tag=='Ausverkauft',

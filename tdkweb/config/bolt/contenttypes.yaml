@@ -314,11 +314,19 @@ shows:
             class: large
             info: "Dieser Name dient nur zur Anzeige im Editor und ist nicht auf der Website sichtbar"
             placeholder: "z.B.: DQ Premiere"
+        postfix:
+            type: text
+            label: "Postfix"
+            placeholder: "z.B.: Gastspiel in Scheibbs"
         date:
             label: "Datum und Uhrzeit"
             type: date
             mode: datetime
             required: true
+        note:
+            label: "Notiz"
+            type: text
+            readonly: true
         slug:
             type: slug
             uses: [show_name, date]

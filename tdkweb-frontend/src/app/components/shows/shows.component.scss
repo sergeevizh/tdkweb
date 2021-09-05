@@ -73,17 +73,19 @@
     height: 300px;
     grid-template-columns: [img] 400px [content] 1fr;
     column-gap: 50px;
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-rows: 80px auto auto;
 
     margin: 50px;
 
     .show-cover{
+        place-self: center;
         width: 100%;
-        grid-row: 1 / 3;
+        grid-row: 1 / 5;
         grid-column: img;
     }
 
     .show-title{
+        font-size: 3.5em;
         text-align: left;
         grid-row: 1;
         grid-column: content;
@@ -97,8 +99,17 @@
         font-weight: 300;
     }
 
-    .show-tags{
+    .show-buttons{
         grid-row: 3;
+        grid-column: content;
+
+        a{
+            margin: 5px 10px 5px 0;
+        }
+    }
+
+    .show-tags{
+        grid-row: 4;
         grid-column: content;
         width: 100%;
         display: flex;
@@ -108,6 +119,7 @@
 
     .show-chip{
         margin: 10px;
+        margin-top: 0;
         border-radius: 20px;
         height: 30px;
         width: min-content;
