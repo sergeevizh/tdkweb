@@ -28,6 +28,9 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { FilterPipe } from './pipes/filter.pipe';
 import { PlayTeaserComponent } from './components/play-teaser/play-teaser.component';
 import { ShowsFilterPipe } from './pipes/shows-filter.pipe';
+import { TicketDialogComponent } from './components/ticket-dialog/ticket-dialog.component';
+import { PlayDetailComponent } from './components/play-detail/play-detail.component';
+import { ShowTeaserComponent } from './components/show-teaser/show-teaser.component';
 registerLocaleData(localeDeAt);
 
 @NgModule({
@@ -48,7 +51,10 @@ registerLocaleData(localeDeAt);
     ContactFormComponent,
     FilterPipe,
     PlayTeaserComponent,
-    ShowsFilterPipe
+    ShowsFilterPipe,
+    TicketDialogComponent,
+    PlayDetailComponent,
+    ShowTeaserComponent
   ],
   imports: [
     BrowserModule,

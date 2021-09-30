@@ -2,6 +2,7 @@
 
 .play-teaser{
     margin: 20px;
+    cursor: pointer;
 
     @media (max-width: $landscape-breakpoint){
         margin: 5px;

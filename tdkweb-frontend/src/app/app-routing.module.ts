@@ -4,15 +4,19 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { InfoComponent } from './components/info/info.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PlayDetailComponent } from './components/play-detail/play-detail.component';
 import { PlaysComponent } from './components/plays/plays.component';
 import { PressComponent } from './components/press/press.component';
 import { PricesComponent } from './components/prices/prices.component';
 import { ShowsComponent } from './components/shows/shows.component';
 import { TeamComponent } from './components/team/team.component';
+import { TicketDialogComponent } from './components/ticket-dialog/ticket-dialog.component';
 
 const routes: Routes = [
+  {path: 'dialog', component: TicketDialogComponent},
   { path: 'home', component: HomeComponent},
   { path: 'stuecke', component: PlaysComponent},
+  { path: 'stueck/:id', component: PlayDetailComponent},
   { path: 'vorstellungen', component: ShowsComponent},
   { path: 'team', component: TeamComponent},
   { path: 'preise', component: PricesComponent},

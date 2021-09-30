@@ -1,53 +1,4 @@
-<div class="calendar-container" style="display: none;">
-  <div class="cal-nav">
-    <div class="cal-btn today-btn">
-      <h2 *ngIf="!isCurrentMonth" (click)="resetViewDate()">Heute</h2>
-    </div>
-    <div
-        mwlCalendarPreviousView
-        [view]="view"
-        [viewDate]="viewDate"
-        (viewDateChange)="setViewDate($event)"
-        class="cal-btn prev-date"
-    >
-      <h2 class="prev-date">{{prevMonth?.toLocaleDateString(locale, {month: 'short'})}}</h2>
-    </div>
-    <div class="curr-month">
-      <h1>{{viewDate.toLocaleString(locale, { month: 'long' })}} {{viewDate.getFullYear()}}</h1>
-    </div>
-    <div
-        class="cal-btn"
-        mwlCalendarNextView
-        [view]="view"
-        [viewDate]="viewDate"
-        (viewDateChange)="setViewDate($event)"
-      >
-      <h2 class="next-date">{{nextMonth?.toLocaleDateString(locale, {month: 'short'})}}</h2>
-    </div>
-  
-    <div class="btn-group view-select">
-      <div class="btn btn-primary" (click)="changeView('month')" [class.active]="viewString == 'month'">Monat</div>
-      <div class="btn btn-primary" (click)="changeView('week')" [class.active]="viewString == 'week'">Woche</div>
-      <div class="btn btn-primary" (click)="changeView('list')" [class.active]="viewString == 'list'">Liste</div>
-    </div>
-  </div>
-  
-  <div [ngSwitch]="view">
-      <mwl-calendar-month-view 
-          class="shows-calendar"
-          *ngSwitchCase="'month'"
-          [viewDate]="viewDate"
-          [events]="events"
-          [locale]="locale"
-          [weekStartsOn]="weekStartsOn"
-          [activeDayIsOpen]="activeDayIsOpen"
-          (dayClicked)="dayClicked($event.day)"
-          [refresh]="refresh"
-      >
-  
-      </mwl-calendar-month-view>
-  </div>
-</div>
+<app-ticket-dialog #dialog></app-ticket-dialog>
 
 <div class="calendar-container">
   <div class="cal-nav">
@@ -81,11 +32,11 @@
     <div *ngFor="let show of showEvents">
       <div *ngIf="showIsInMonth(show)" class="show-item">
         <img [src]="show.play?.fieldValues.cover.url" class="list-image show-cover">
-        <h1 class="show-title">{{show.play?.fieldValues.title}} {{show.show?.fieldValues.postfix}}</h1>
+        <div class="show-title"><h1 class="play-name">{{show.play?.fieldValues.title}}</h1> <h1 class="show-postfix">{{show.show?.fieldValues.postfix}}</h1></div>
         <h2 class="show-date">{{getFormattedDate(show.show?.fieldValues.date)}}</h2>
         <div class="show-buttons">
           <a class="btn btn-outline-primary btn-lg">Infos zum Stück</a>
-          <button class="btn btn-primary btn-lg" [disabled]="isShowPast(show)">Karten</button>
+          <button class="btn btn-primary btn-lg" [disabled]="isShowPast(show)" (click)="dialogComponent?.open(show)">Karten</button>
         </div>
         <div class="show-tags tdk-chips">
           <div *ngFor="let tag of getTaxonomies(show)" [class]="{

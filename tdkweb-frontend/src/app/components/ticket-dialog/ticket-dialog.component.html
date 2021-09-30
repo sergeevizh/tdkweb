@@ -1,0 +1,33 @@
+<div class="dialog-container" *ngIf="isOpen">
+    <div class="dialog-backdrop" (click)="close($event)">
+        <div class="dialog" (click)="dontClose($event)" [ngSwitch]="dialogType">
+            <div class="info">{{this.info}}</div>
+            <form #ticketForm="ngForm" *ngSwitchCase="'form'">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required minlength="3" [(ngModel)]="name">
+
+                <label for="tel">Telefonnummer</label>
+                <input type="tel" id="tel" name="tel" required [(ngModel)]="tel">
+
+                <label for="ticket">Karten</label>
+                <input type="number" id="ticket" name="tickets" required [(ngModel)]="tickets">
+
+                <label for="note">Notiz</label>
+                <textarea id="note" [(ngModel)]="note" name="note"></textarea>
+
+                <div class="buttons">
+                    <button (click)="close($event)" class="btn btn-outline-primary">Schließen</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="ticketForm.invalid"><a [href]="makeUrlString()">Weiter</a></button>
+                </div>
+            </form>
+            <div class="forward-link" (click)="dontClose($event)" *ngSwitchCase="'forward'">
+                <button class="btn btn-outline-secondary" (click)="close($event)">Schließen</button>
+                <a class="btn btn-primary" [href]="show?.show?.fieldValues.link" target="_blank">Weiter</a>
+            </div>
+            <div class="guest-show" (click)="dontClose($event)" *ngSwitchCase="'guest-show'">
+                <button class="btn btn-outline-secondary" style="margin: 10px;" (click)="close($event)">Schließen</button>
+            </div>
+        </div>
+        
+    </div>
+</div>

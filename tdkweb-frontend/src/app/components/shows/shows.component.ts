@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarEvent, CalendarView, CalendarDateFormatter, DAYS_OF_WEEK } from 'angular-calendar';
 import { addHours, addMonths, format, isSameDay, isSameMonth, parseISO, subMonths } from 'date-fns';
 import { de } from 'date-fns/locale';
@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { ShowEvent } from 'src/app/interfaces/show-event';
 import { CustomDateFormatterService } from 'src/app/services/custom-date-formatter.service';
 import { Content, ContentEdge, PlayGQL, RelationEdge, ShowGQL, ShowPlayRelationsGQL, ShowsGQL } from 'src/generated/graphql';
+import { TicketDialogComponent } from '../ticket-dialog/ticket-dialog.component';
 
 @Component({
   selector: 'app-shows',
@@ -20,6 +21,8 @@ import { Content, ContentEdge, PlayGQL, RelationEdge, ShowGQL, ShowPlayRelations
   ] */
 })
 export class ShowsComponent implements OnInit {
+
+  @ViewChild('dialog') dialogComponent?: TicketDialogComponent;
 
   locale: string = 'de-AT';
   showsView = "calendar";
@@ -97,7 +100,6 @@ export class ShowsComponent implements OnInit {
   }
 
   showIsInMonth(show: ShowEvent): boolean{
-    console.log(parseISO(show.show?.fieldValues.date).getMonth(), this.viewDate.getMonth());
     return parseISO(show.show?.fieldValues.date).getMonth() == this.viewDate.getMonth();
   }
 
