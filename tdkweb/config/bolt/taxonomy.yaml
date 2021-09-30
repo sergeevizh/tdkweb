@@ -63,6 +63,13 @@ show_categories:
         guest_show: Gastspiel
         cancelled: Abgesagt
 
+show_notes:
+    name: Notiz
+    slug: show_notes
+    singular_slug: show_note
+    behaves_like: tags
+    multiple: false
+
 contact_detail_categories:
     name: Anzeigen in
     slug: contact_categories

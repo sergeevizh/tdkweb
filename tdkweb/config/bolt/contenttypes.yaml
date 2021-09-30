@@ -323,6 +323,10 @@ shows:
             type: date
             mode: datetime
             required: true
+        link:
+            type: text
+            label: "Link"
+            info: "Wenn dieses Feld ausgefüllt ist wird beim Klicken auf 'Tickets' kein Formular angezeigt sondern ein Link"
         note:
             label: "Notiz"
             type: text
@@ -336,7 +340,7 @@ shows:
             required: true
             label: "Stück"
             format: "({shorthand}) {title}"
-    taxonomy: show_categories
+    taxonomy: [show_categories, show_notes]
     listing_sort: -date
     icon_many: fa:calendar-alt
     icon_one: fa:calendar-alt
