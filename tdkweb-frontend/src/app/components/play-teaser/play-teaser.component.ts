@@ -13,7 +13,11 @@ export class PlayTeaserComponent implements OnInit {
   @Input("play") play?: ContentEdge;
   @Input("show-chips") showChips: boolean = true;
 
+  playId?: string;
+
   ngOnInit(): void {
+    let splitUrl = this.play!.node!.id.split('/');
+    this.playId = splitUrl[splitUrl!.length-1];
   }
 
   isPremiere(): boolean{

@@ -1,7 +1,7 @@
-<div class="top-block">
-    <img [src]="homepage?.node?.fieldValues.image.url">
+<header class="top-block">
+    <img [src]="homepage?.node?.fieldValues.image.url" [alt]="homepage?.node?.fieldValues.image.alt">
     <h1>{{homepage?.node?.fieldValues.title}}</h1>
-</div>
+</header>
 
 <div class="info-block">
     <div class="info-segment" *ngFor="let block of blocks">

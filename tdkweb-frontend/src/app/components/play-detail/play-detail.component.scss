@@ -1,0 +1,57 @@
+@import '/src/styles.scss';
+
+.play-detail{
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: [img start] 1fr [team] 1fr [end];
+    row-gap: 20px;
+    column-gap: 20px;
+
+    @media (max-width: $tablet-breakpoint){
+        grid-template-columns: [img start team] 1fr [end];
+    }
+
+    h1{
+        grid-row: 1;
+        grid-column: start / end;
+        text-align: center;
+    }
+
+    .play-cover{
+        grid-column: img / team;
+        margin: 0 0 0 75px;
+        width: 90%;
+
+        @media (max-width: $tablet-breakpoint){
+            width: 90%;
+            margin: 0 10px 0 10px;
+            justify-self: center;
+        }
+    }
+
+    .team{
+        grid-column: team / end;
+        padding: 0 10px 0 10px;
+    }
+
+    .synopsis{
+        grid-column: start / end;
+        padding: 0 75px 0 75px;
+
+        @media (max-width: $tablet-breakpoint){
+            padding: 0 10px 0 10px;
+        }
+    }
+
+    .trailer{
+        grid-column: start / end;
+        display: flex;
+        justify-content: center;
+
+        ::ng-deep iframe{
+            width: 500px;
+            aspect-ratio: 1.7;
+        }
+    }
+}

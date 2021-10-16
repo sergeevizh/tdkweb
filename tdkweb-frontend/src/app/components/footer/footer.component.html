@@ -1,5 +1,5 @@
-<div class="tdk-footer">
-    <div class="contact-details">
+<footer class="tdk-footer">
+    <address class="contact-details">
         <h3>Kontakt</h3>
         <div class="contact-detail" *ngFor="let detail of contactDetails">
             <span class="material-icons-outlined contact-detail-icon">{{detail.node?.fieldValues.icon}}</span>
@@ -10,14 +10,13 @@
                 <span *ngSwitchDefault>{{detail.node?.fieldValues.content}}</span>
             </div>
         </div>
-    </div>
+    </address>
     <div class="office-times">
         <h3>Gerne für Sie erreichbar</h3>
-        <div [innerHTML]="officeTimes?.node?.fieldValues.content" class="office-time-block"></div>
+        <p [innerHtml]="officeTimes?.node?.fieldValues.content" class="office-time-block"></p>
     </div>
-    <div class="copyright-notice">
-        <span>
-            {{copyrightNotice}}
+    <p class="copyright-notice">
+        <span [innerHtml]="copyrightNotice">
         </span>
-    </div>
-</div>
+    </p>
+</footer>

@@ -1,7 +1,7 @@
 <div class="contact-block">
     <h1>Theater des Kindes</h1>
     <div *ngFor="let detail of contactDetails" [ngSwitch]="detail.node?.fieldValues.slug">
-        <a *ngSwitchCase="'impressum-vereinsregisterauszug'" target="_blank" href="{{detail.node?.fieldValues.content}}"><b>{{detail.node?.fieldValues.name}}</b></a>
+        <a *ngSwitchCase="'impressum-vereinsregisterauszug'" target="_blank" href="{{detail.node?.fieldValues.file.url}}"><b>{{detail.node?.fieldValues.name}}</b></a>
         <p *ngSwitchDefault>{{detail.node?.fieldValues.content}}</p>
     </div>
     <div class="contact-form">

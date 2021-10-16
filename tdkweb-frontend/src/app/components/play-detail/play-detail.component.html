@@ -1,1 +1,8 @@
-<p>play-detail works!</p>
+<div class="play-detail">
+    <h1>{{play?.fieldValues.title}}</h1>
+    <img class="play-cover" [src]="play?.fieldValues.cover.url">
+    <div class="team" [innerHtml]="play?.fieldValues.team"></div>
+    <div class="synopsis" [innerHtml]="play?.fieldValues.description"></div>
+    <div class="trailer" *ngIf="play?.fieldValues.trailer.url.length > 0" [innerHtml]="trailer">
+    </div>
+</div>

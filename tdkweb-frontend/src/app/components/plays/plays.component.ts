@@ -17,7 +17,8 @@ export class PlaysComponent implements OnInit {
 
   ngOnInit(): void {
     this.playQuery.watch().valueChanges.subscribe(result => {
-      let plays = result.data.contents?.edges;
+      let plays = [...(result.data.contents?.edges as ContentEdge[])];
+      plays.sort((p1, p2) => (p1.node?.fieldValues.index as number) - (p2.node?.fieldValues.index as number));
       /* let plays = result.data.contents?.edges?.sort((a, b) => {
         return compareAsc(parseISO(a?.node?.fieldValues.premiere_date), parseISO(b?.node?.fieldValues.premiere_date));
       }) */

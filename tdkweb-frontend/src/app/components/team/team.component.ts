@@ -39,10 +39,11 @@ export class TeamComponent implements OnInit {
       });
       this.teamQuery.watch().valueChanges.subscribe((result) => {
         this.people = result?.data?.contents?.edges as ContentEdge[];
-        this.people = this.people.filter(p => Object.keys(p.node?.taxonomyValues).length > 0);
+        this.people = this.people.filter(p => Object.keys(p.node?.taxonomyValues).length > 0).sort((p1, p2) => {
+          return p1.node?.fieldValues.index - p2.node?.fieldValues.index
+        });
+
         this.departmentPeople = groupBy(this.people, i => Object.keys(i.node?.taxonomyValues.departments)[0]);
-        console.log(this.departmentPeople);
-        console.log(Object.entries(this.departmentPeople))
         this.departments = Object.keys(this.departmentPeople).map(i => {
           return {
             key: i,

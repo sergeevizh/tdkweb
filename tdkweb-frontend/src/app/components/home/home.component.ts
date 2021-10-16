@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
       let plays = result.data.contents?.edges
         ?.filter(p => Object.keys(p?.node?.taxonomyValues).includes("play_categories"))
         .filter(p => Object.keys(p?.node?.taxonomyValues.play_categories).includes("current-season"));
+      plays?.sort((p1, p2) => (p1?.node?.fieldValues.index as number) - (p2?.node?.fieldValues.index as number));
       
       this.premieres = plays
         ?.filter(p => Object.keys(p?.node?.taxonomyValues.play_categories).includes("premiere")) as ContentEdge[];

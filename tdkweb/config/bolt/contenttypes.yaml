@@ -138,6 +138,12 @@ people:
         image:
             label: Foto
             type: image
+        index:
+            label: Index
+            type: number
+            mode: float
+            default: 100
+            required: true
         slug:
             type: slug
             uses: [ name ]
@@ -281,25 +287,30 @@ plays:
             info: "Das Vorschaubild sollte eine Bubble mit dem Alter haben"
             alt: true
             upload: sujets
+        trailer:
+            label: "Trailer"
+            type: embed
         images:
             type: imagelist
             label: "Bilder"
             upload: gallery
+        index:
+            label: Index
+            type: number
+            mode: float
+            default: 100
+            required: true
         slug:
             type: slug
             uses: title
     icon_many: fa:book
     icon_one: fa:book
     taxonomy: play_categories
-    sort: -premiere_date
     relations:
         people:
             multiple: true
             label: "Team"
             format: "{name}"
-        event_colors:
-            label: Kalenderfarbe
-        
 
 shows:
     name: Vorstellungen
@@ -362,6 +373,12 @@ infos:
         content:
             label: "Inhalt"
             type: article
+        index:
+            label: Index
+            type: number
+            mode: float
+            default: 100
+            required: true
         slug:
             type: slug
             uses: headline
@@ -427,6 +444,10 @@ contact_details:
             type: text
             label: Icon-Name
             info: "Hier den Namen des gewünschten Icons von https://fonts.google.com/icons angeben. Achtung! Namen wie \"Shopping Cart\" müssen als \"shopping_cart\" angegeben werden!"
+        file:
+            type: file
+            label: Datei
+            upload: files
         slug:
             type: slug
             uses: name

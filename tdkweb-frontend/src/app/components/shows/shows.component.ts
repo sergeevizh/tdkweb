@@ -116,4 +116,13 @@ export class ShowsComponent implements OnInit {
     return parseISO(show.show?.fieldValues.date) < this.today;
   }
 
+  isShowValid(show: ShowEvent): boolean{
+    return !(this.isShowPast(show)||this.getTaxonomies(show).includes("Ausverkauft")||this.getTaxonomies(show).includes("Abgesagt"));
+  }
+
+  getPlayId(show: ShowEvent){
+    let splitId = show.play!.id.split('/');
+    return splitId[splitId?.length-1];
+  }
+
 }

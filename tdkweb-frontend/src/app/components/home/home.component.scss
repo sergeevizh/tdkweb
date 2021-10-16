@@ -99,5 +99,9 @@
 
     @media screen and (max-width: $landscape-breakpoint){
         grid-template-columns: 1fr;
+
+        app-person-teaser{
+            justify-self: center;
+        }
     }
 }

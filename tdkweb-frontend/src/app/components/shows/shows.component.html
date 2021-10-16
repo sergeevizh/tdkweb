@@ -2,9 +2,6 @@
 
 <div class="calendar-container">
   <div class="cal-nav">
-    <div class="cal-btn today-btn">
-      <h2 *ngIf="!isCurrentMonth" (click)="resetViewDate()">Heute</h2>
-    </div>
     <div
         mwlCalendarPreviousView
         [view]="view"
@@ -35,8 +32,8 @@
         <div class="show-title"><h1 class="play-name">{{show.play?.fieldValues.title}}</h1> <h1 class="show-postfix">{{show.show?.fieldValues.postfix}}</h1></div>
         <h2 class="show-date">{{getFormattedDate(show.show?.fieldValues.date)}}</h2>
         <div class="show-buttons">
-          <a class="btn btn-outline-primary btn-lg">Infos zum Stück</a>
-          <button class="btn btn-primary btn-lg" [disabled]="isShowPast(show)" (click)="dialogComponent?.open(show)">Karten</button>
+          <a class="btn btn-outline-primary btn-lg" [routerLink]="['/stueck', getPlayId(show)]">Infos zum Stück</a>
+          <button class="btn btn-primary btn-lg" [disabled]="!isShowValid(show)" (click)="dialogComponent?.open(show)">Karten</button>
         </div>
         <div class="show-tags tdk-chips">
           <div *ngFor="let tag of getTaxonomies(show)" [class]="{
